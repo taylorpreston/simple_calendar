@@ -1,0 +1,27 @@
+.bg-lightblue {
+  background: lightblue
+}
+
+.border {
+  border-color: lightgray;
+}
+
+.badge {
+  padding: 4px 6px;
+  color: white;
+  background: lightgray;
+  font-size: 12px;
+  border-radius: 12px;
+
+  &.teal {
+    background: teal;
+  }
+}
+
+.font-sans {
+  font-family: sans-serif;
+}
+
+.mt05 {
+  margin-top: 0.5rem;
+}
