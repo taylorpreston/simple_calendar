@@ -1,135 +1,270 @@
-console.log("CONNECTED INDEX.JS")
+console.log("CONNECTED INDEX.JS");
+
+// TODOS
+// X Tabs functionality - persists ID of tab somewhere / local storage in futute
+// ) Tabs UX/UI responsive blah blah blah all tabs same size / font sizes / Use date time --- maybe date-fn 2.0 package
+// ) 
+// ) Replace speakers with new members from schema
+// ) Header
+// ) Dropdown animations
+// ) Arrow animation and location
+var date = new Date()
+console.log(date.toLocaleString('en-GB', { timeZone: 'UTC' }))
 
 const data = [
   {
     title: "Behavioral Health Workshop for EMS Providers - Part 1",
     start: "8:30",
     end: "9:30",
-    description: " I am a really long description of a thing that is going to an event that people are going to come to and it should be fun.",
-    speakers: ["Michelle Albert, LPC, CSOTP – Igneous Solutions / Michelle S. Albert, LPC, CSOTP", "Ryan Morgan – Law Enforcement"]
+    description:
+      " I am a really long description of a thing that is going to an event that people are going to come to and it should be fun.",
+    speakers: [
+      "Michelle Albert, LPC, CSOTP – Igneous Solutions / Michelle S. Albert, LPC, CSOTP",
+      "Ryan Morgan – Law Enforcement",
+    ],
   },
   {
     title: "EMS Supervisor Leadership Academy - Part 1",
     start: "8:00",
     end: "10:00",
-    description: "I am a really long description of a thing that is going to an event that people are going to come to and it should be fun.",
-    speakers: ["Michelle Albert, LPC, CSOTP – Igneous Solutions / Michelle S. Albert, LPC, CSOTP", "Ryan Morgan – Law Enforcement"],
+    description:
+      "I am a really long description of a thing that is going to an event that people are going to come to and it should be fun.",
+    speakers: [
+      "Michelle Albert, LPC, CSOTP – Igneous Solutions / Michelle S. Albert, LPC, CSOTP",
+      "Ryan Morgan – Law Enforcement",
+    ],
     badges: [
       {
         color: "teal",
-        name: "Exhibit Hall Events"
+        name: "Exhibit Hall Events",
       },
       {
         color: "red",
-        name: "Exhibit Hall Events"
+        name: "Exhibit Hall Events",
       },
       {
         color: "green",
-        name: "Exhibit Hall Events"
+        name: "Exhibit Hall Events",
       },
       {
         color: "blue",
-        name: "Exhibit Hall Events"
+        name: "Exhibit Hall Events",
       },
       {
         color: "orange",
-        name: "Exhibit Hall Events"
+        name: "Exhibit Hall Events",
       },
       {
         color: "yellow",
-        name: "Exhibit Hall Events"
+        name: "Exhibit Hall Events",
       },
-    ]
+    ],
   },
   {
     title: "Dropdown event",
     start: "8:00",
     end: "10:00",
-    description: "I am a really long description of a thing that is going to an event that people are going to come to and it should be fun.",
-    speakers: ["Michelle Albert, LPC, CSOTP – Igneous Solutions / Michelle S. Albert, LPC, CSOTP", "Ryan Morgan – Law Enforcement"],
-    badges: [{
-      color: "teal",
-      name: "Exhibit Hall Events"
-    }],
-    events: [{
-      title: "Dropdown event",
-      start: "8:00",
-      end: "10:00",
-      description: "I am a really long description of a thing that is going to an event that people are going to come to and it should be fun.",
-      speakers: ["Michelle Albert, LPC, CSOTP – Igneous Solutions / Michelle S. Albert, LPC, CSOTP", "Ryan Morgan – Law Enforcement"],
-      badges: [{
-        color: "blue",
-        name: "Some beach somewhere"
-      }],
-    }]
+    description:
+      "I am a really long description of a thing that is going to an event that people are going to come to and it should be fun.",
+    speakers: [
+      "Michelle Albert, LPC, CSOTP – Igneous Solutions / Michelle S. Albert, LPC, CSOTP",
+      "Ryan Morgan – Law Enforcement",
+    ],
+    badges: [
+      {
+        color: "teal",
+        name: "Exhibit Hall Events",
+      },
+    ],
+    events: [
+      {
+        title: "Dropdown event",
+        start: "8:00",
+        end: "10:00",
+        description:
+          "I am a really long description of a thing that is going to an event that people are going to come to and it should be fun.",
+        speakers: [
+          "Michelle Albert, LPC, CSOTP – Igneous Solutions / Michelle S. Albert, LPC, CSOTP",
+          "Ryan Morgan – Law Enforcement",
+        ],
+        badges: [
+          {
+            color: "blue",
+            name: "Some beach somewhere",
+          },
+        ],
+      },
+      {
+        title: "Dropdown event",
+        start: "8:00",
+        end: "10:00",
+        description:
+          "I am a really long description of a thing that is going to an event that people are going to come to and it should be fun.",
+        speakers: [
+          "Michelle Albert, LPC, CSOTP – Igneous Solutions / Michelle S. Albert, LPC, CSOTP",
+          "Ryan Morgan – Law Enforcement",
+        ],
+        badges: [
+          {
+            color: "blue",
+            name: "Some beach somewhere",
+          },
+        ],
+      },
+    ],
   },
-]
+];
+
+const testEvents = (day) => {
+  return data.map(event => {
+    return ({
+      ...event,
+      title: `${day} ${event.title}`
+    })
+  })
+}
+
+let days = [
+  { id: 0, name: "All Days", events: data },
+  { id: 1, name: "Monday, September 14, 2020", events: testEvents("MONDAY")},
+  { id: 2, name: "Tuesday, September 15, 2020", events: [] },
+  { id: 3, name: "Wednesday, September 16, 2020", events: [] },
+  { id: 4, name: "Thursday, September 17, 2020", events: [] },
+  { id: 6, name: "Friday, September 18, 2020", events: [] },
+  { id: 7, name: "Saturday, September 19, 2020", events: [] },
+  { id: 8, name: "Sunday, September 20, 2020", events: [] },
+  { id: 9, name: "Monday, September 21, 2020", events: [] },
+];
+
+let dayId = 0
+let eventData = days[0].events
+
+function updateEventsData(){
+  console.log("UPDATE", dayId)
+  eventData = days[dayId].events
+  console.log(eventData)
+}
+
+function handleTabClick(event) {
+  console.log(event.target.id)
+  dayId = event.target.id
+  const tabs = document.querySelectorAll(".tab-link")
+  tabs.forEach(tab => {
+    if(tab.id === dayId){
+      tab.classList.add("active")
+    } else {
+      tab.classList.remove("active")
+    }
+  })
+  updateEventsData()
+  renderEventsDOM()
+}
 
 function handleAccordionClick(event) {
-  if (!event.target.classList.contains("accordion")) {
-    return null
+  const closestAccordion = event.target.closest(".accordion");
+  if (!closestAccordion) {
+    return null;
   }
-  
-  const content = document.querySelector(event.target.hash);
 
-  if (content.classList.contains('active')) {
-    content.classList.remove('active');
+  if (closestAccordion.classList.contains("active")) {
+    closestAccordion.classList.remove("active");
     return;
   }
-  
+
+  // For loop to remove active class from any opened
+
+  closestAccordion.classList.add("active");
+  console.log("CLOSEST ACC:", closestAccordion);
+  console.log("YAY!!!");
+}
+
+function makeHeader(days) {
+  return`
+  <div class="tabs-container flex flex-between">
+    ${makeTabs(days)}
+  </div>
+  `
+}
+
+function makeTabs(days) {
+  if (!days || days.length === 0) {
+    return "";
+  }
+  five_days = days.slice(0,5)
+  return five_days
+    .map((day) => {
+      const shorthand = day.name.split(" ").slice(0,3).map(word => word.slice(0,3)).join(" ")
+      return `<button onclick="handleTabClick" id=${day.id} class="tab-link font-sans">${shorthand}</button>`;
+    })
+    .join(" ");
 }
 
 function makeBadges(badges) {
   if (!badges || badges.length === 0) {
-    return ""
+    return "";
   }
-  return badges.map(badge => {
-    return `<p class="badge font-sans ${badge.color}">${badge.name}</p>`
-  }).join(" ")
+  return badges
+    .map((badge) => {
+      return `<p class="badge font-sans ${badge.color}">${badge.name}</p>`;
+    })
+    .join(" ");
 }
 
 function makeSpeakers(speakers) {
   if (!speakers || speakers.length == 0) {
-    return ""
+    return "";
   }
-  return speakers.map(speaker => ((
-    `<li class="h6 font-sans">
-      Speaker: ${speaker}
-    </li>`
-    ))
-  ).join(" ")
+  return speakers
+    .map(
+      (speaker) =>
+        `
+        <li class="h5 font-sans text-grey">
+        Speaker: ${speaker}
+        </li>
+      `
+    )
+    .join(" ");
 }
 
 function makeEventRow(event) {
-  const events_class = event.events && event.events.length && "accordion"
-  return (
-  `<div class="flex border p2 ${events_class}">
-    <div class="col-12">
-      <p class="h4 mb0 font-sans">${event.start} - ${event.end}</p>
-      <p class="h5 font-sans">${event.title}</p>
-      <div class="list-reset">
+  const events_class = (event.events && "accordion") || "";
+  return `
+    <div class="p2 border ${events_class}">
+      <p class="h4 mb0 mt1 text-dark bold font-sans ">${event.start} - ${
+    event.end
+  }</p>
+      <p class="h4 mt0 text-dark bold font-sans ">${event.title}</p>
+      <div class="list-reset ">
         ${makeSpeakers(event.speakers)}
       </div>
-      <div class="flex">
+      <div class="flex flex-wrap ">
         ${makeBadges(event.badges)}
       </div>
       <div>
+        <i class="fa fa-angle-down"></i>
+      </div>
+      <div class="dropdown">
         ${makeEvents(event.events)}
       </div>
     </div>
-  </div>`
-  )
+  `;
 }
 
 function makeEvents(events) {
   if (!events || events.length === 0) {
-    return ""
+    return "";
   }
-  return events.map(event => makeEventRow(event)).join(" ")
+  return events.map((event) => makeEventRow(event)).join(" ");
 }
 
-const eventsHtml = makeEvents(data)
+function renderEventsDOM() {
+  const eventsHtml = makeEvents(eventData);
+  document.getElementById("eventGrid").innerHTML = eventsHtml;
+}
 
+const headerHtml = makeHeader(days);
 
-document.getElementById("eventGrid").innerHTML = eventsHtml
-document.addEventListener("click", handleAccordionClick)
+renderEventsDOM()
+document.getElementById("header").innerHTML = headerHtml;
+document.addEventListener("click", handleAccordionClick);
+document.querySelectorAll(".tab-link").forEach(tab => tab.onclick = handleTabClick)

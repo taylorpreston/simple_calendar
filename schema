@@ -1,9 +1,19 @@
 This is just an example of what the schema could be
 
+
+days: [
+    {
+        id: any,
+        date_time: date time,
+        name: string,
+        events: ARRAY OF EVENTS,
+    }
+]
+
 events: [{
   id: any,
   title: string,
-  date_time: string,
+  date_time: date time,
   description: string,
   members: [{
     type: string,
