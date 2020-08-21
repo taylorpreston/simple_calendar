@@ -1,0 +1,17 @@
+This is just an example of what the schema could be
+
+events: [{
+  id: any,
+  title: string,
+  date_time: string,
+  description: string,
+  members: [{
+    type: string,
+    name: string
+  }],
+  badges: [{
+    color: sting-class-name,
+    name: string,
+  }],
+  events: [{ exact spec as above }]
+}]
