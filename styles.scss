@@ -1,6 +1,9 @@
-.bg-lightblue {
-  background: lightblue
-}
+$red: #d11141;
+$green:#00b159;
+$blue: #00aedb;
+$orange: #f37735;
+$yellow: #ffc425;
+$teal: #35a79c;
 
 .border {
   border-color: lightgray;
@@ -14,7 +17,27 @@
   border-radius: 12px;
 
   &.teal {
-    background: teal;
+    background: $teal;
+  }
+
+  &.red {
+    background: $red;
+  }
+
+  &.green {
+    background: $green;
+  }
+
+  &.blue {
+    background: $blue;
+  }
+
+  &.orange {
+    background: $orange;
+  }
+
+  &.yellow {
+    background: $yellow;
   }
 }
 
@@ -22,6 +45,8 @@
   font-family: sans-serif;
 }
 
-.mt05 {
-  margin-top: 0.5rem;
+.accordion {
+  &:hover {
+    cursor: pointer;
+  } 
 }

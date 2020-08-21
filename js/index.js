@@ -14,10 +14,32 @@ const data = [
     end: "10:00",
     description: "I am a really long description of a thing that is going to an event that people are going to come to and it should be fun.",
     speakers: ["Michelle Albert, LPC, CSOTP – Igneous Solutions / Michelle S. Albert, LPC, CSOTP", "Ryan Morgan – Law Enforcement"],
-    badges: [{
-      color: "teal",
-      name: "Exhibit Hall Events"
-    }]
+    badges: [
+      {
+        color: "teal",
+        name: "Exhibit Hall Events"
+      },
+      {
+        color: "red",
+        name: "Exhibit Hall Events"
+      },
+      {
+        color: "green",
+        name: "Exhibit Hall Events"
+      },
+      {
+        color: "blue",
+        name: "Exhibit Hall Events"
+      },
+      {
+        color: "orange",
+        name: "Exhibit Hall Events"
+      },
+      {
+        color: "yellow",
+        name: "Exhibit Hall Events"
+      },
+    ]
   },
   {
     title: "Dropdown event",
@@ -36,12 +58,26 @@ const data = [
       description: "I am a really long description of a thing that is going to an event that people are going to come to and it should be fun.",
       speakers: ["Michelle Albert, LPC, CSOTP – Igneous Solutions / Michelle S. Albert, LPC, CSOTP", "Ryan Morgan – Law Enforcement"],
       badges: [{
-        color: "teal",
-        name: "Exhibit Hall Events"
+        color: "blue",
+        name: "Some beach somewhere"
       }],
     }]
   },
 ]
+
+function handleAccordionClick(event) {
+  if (!event.target.classList.contains("accordion")) {
+    return null
+  }
+  
+  const content = document.querySelector(event.target.hash);
+
+  if (content.classList.contains('active')) {
+    content.classList.remove('active');
+    return;
+  }
+  
+}
 
 function makeBadges(badges) {
   if (!badges || badges.length === 0) {
@@ -65,8 +101,9 @@ function makeSpeakers(speakers) {
 }
 
 function makeEventRow(event) {
+  const events_class = event.events && event.events.length && "accordion"
   return (
-  `<div class="flex border p2">
+  `<div class="flex border p2 ${events_class}">
     <div class="col-12">
       <p class="h4 mb0 font-sans">${event.start} - ${event.end}</p>
       <p class="h5 font-sans">${event.title}</p>
@@ -95,3 +132,4 @@ const eventsHtml = makeEvents(data)
 
 
 document.getElementById("eventGrid").innerHTML = eventsHtml
+document.addEventListener("click", handleAccordionClick)
