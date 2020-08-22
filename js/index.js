@@ -332,31 +332,27 @@ function makeEvents(events) {
   return events.map((event) => makeEventRow(event)).join(" ");
 }
 
-function fullDateFormat(datetime) {
-  const year = datetime.getFullYear();
-  const date = datetime.getDate();
-  const months = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
-  ];
-  datetime.getMonth();
-  const monthName = month[datetime.getMonth()];
-  const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-  const dayName = days[datetime.getDay()];
+function makeDateTitle(datetime) {
+  // if not date time return string
+  // if is date time return formatted date
+  return "Hello title"
+}
+
+function makeDays(days) {
+  if (!days || days.length === 0) {
+    return ""
+  }
+
+  return days.map((day) => (
+    `<div>
+      <p class="h4">${makeDateTitle(day.datetime)}</p>
+      ${makeEvents(day.events)}
+    </div>`
+  ))
 }
 
 function renderEventsDOM() {
-  const eventsHtml = makeEvents(eventData);
+  const eventsHtml = makeDays(days)
   document.getElementById("eventGrid").innerHTML = eventsHtml;
 }
 
