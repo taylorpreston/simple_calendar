@@ -3,19 +3,19 @@ console.log("CONNECTED INDEX.JS");
 // TODOS
 // X Tabs functionality - persists ID of tab somewhere / local storage in futute
 // ) Tabs UX/UI responsive blah blah blah all tabs same size / font sizes / Use date time --- maybe date-fn 2.0 package
-// ) 
+// )
 // ) Replace speakers with new members from schema
 // ) Header
 // ) Dropdown animations
 // ) Arrow animation and location
-var date = new Date()
-console.log(date.toLocaleString('en-GB', { timeZone: 'UTC' }))
+var date = new Date();
+console.log(date.toLocaleString("en-GB", { timeZone: "UTC" }));
 
 const data = [
   {
     title: "Behavioral Health Workshop for EMS Providers - Part 1",
-    start: "8:30",
-    end: "9:30",
+    start: new Date(2020, 11, 25, 8),
+    end: new Date(2020, 11, 25, 10),
     description:
       " I am a really long description of a thing that is going to an event that people are going to come to and it should be fun.",
     speakers: [
@@ -25,8 +25,8 @@ const data = [
   },
   {
     title: "EMS Supervisor Leadership Academy - Part 1",
-    start: "8:00",
-    end: "10:00",
+    start: new Date(2019, 11, 25, 8),
+    end: new Date(2019, 11, 25, 11),
     description:
       "I am a really long description of a thing that is going to an event that people are going to come to and it should be fun.",
     speakers: [
@@ -62,8 +62,8 @@ const data = [
   },
   {
     title: "Dropdown event",
-    start: "8:00",
-    end: "10:00",
+    start: new Date(2019, 11, 25, 8),
+    end: new Date(2019, 11, 25, 12),
     description:
       "I am a really long description of a thing that is going to an event that people are going to come to and it should be fun.",
     speakers: [
@@ -79,8 +79,8 @@ const data = [
     events: [
       {
         title: "Dropdown event",
-        start: "8:00",
-        end: "10:00",
+        start: new Date(2020, 8, 10, 8),
+        end: new Date(2020, 8, 10, 10),
         description:
           "I am a really long description of a thing that is going to an event that people are going to come to and it should be fun.",
         speakers: [
@@ -96,8 +96,8 @@ const data = [
       },
       {
         title: "Dropdown event",
-        start: "8:00",
-        end: "10:00",
+        start: new Date(2020, 8, 10, 8),
+        end: new Date(2020, 8, 10, 10),
         description:
           "I am a really long description of a thing that is going to an event that people are going to come to and it should be fun.",
         speakers: [
@@ -116,48 +116,46 @@ const data = [
 ];
 
 const testEvents = (day) => {
-  return data.map(event => {
-    return ({
+  return data.map((event) => {
+    return {
       ...event,
-      title: `${day} ${event.title}`
-    })
-  })
-}
+      title: `${day} ${event.title}`,
+    };
+  });
+};
 
 let days = [
-  { id: 0, name: "All Days", events: data },
-  { id: 1, name: "Monday, September 14, 2020", events: testEvents("MONDAY")},
-  { id: 2, name: "Tuesday, September 15, 2020", events: [] },
-  { id: 3, name: "Wednesday, September 16, 2020", events: [] },
-  { id: 4, name: "Thursday, September 17, 2020", events: [] },
-  { id: 6, name: "Friday, September 18, 2020", events: [] },
-  { id: 7, name: "Saturday, September 19, 2020", events: [] },
-  { id: 8, name: "Sunday, September 20, 2020", events: [] },
-  { id: 9, name: "Monday, September 21, 2020", events: [] },
+  { id: 0, datetime: "All Days", events: data },
+  { id: 1, datetime: new Date(2019, 11, 25, 8), events: testEvents("MONDAY") },
+  { id: 2, datetime: new Date(2019, 11, 25, 8), events: [] },
+  { id: 3, datetime: new Date(2019, 11, 25, 8), events: [] },
+  { id: 4, datetime: new Date(2019, 11, 25, 8), events: [] },
+  { id: 6, datetime: new Date(2019, 11, 25, 8), events: [] },
+  { id: 7, datetime: new Date(2019, 11, 25, 8), events: [] },
+  { id: 8, datetime: new Date(2019, 11, 25, 8), events: [] },
+  { id: 9, datetime: new Date(2019, 11, 25, 8), events: [] },
 ];
 
-let dayId = 0
-let eventData = days[0].events
+let dayId = 0;
+let eventData = days[0].events;
 
-function updateEventsData(){
-  console.log("UPDATE", dayId)
-  eventData = days[dayId].events
-  console.log(eventData)
+function updateEventsData() {
+  eventData = days[dayId].events;
+  console.log(eventData);
 }
 
 function handleTabClick(event) {
-  console.log(event.target.id)
-  dayId = event.target.id
-  const tabs = document.querySelectorAll(".tab-link")
-  tabs.forEach(tab => {
-    if(tab.id === dayId){
-      tab.classList.add("active")
+  dayId = event.target.id;
+  const tabs = document.querySelectorAll(".tab-link");
+  tabs.forEach((tab) => {
+    if (tab.id === dayId) {
+      tab.classList.add("active");
     } else {
-      tab.classList.remove("active")
+      tab.classList.remove("active");
     }
-  })
-  updateEventsData()
-  renderEventsDOM()
+  });
+  updateEventsData();
+  renderEventsDOM();
 }
 
 function handleAccordionClick(event) {
@@ -179,22 +177,22 @@ function handleAccordionClick(event) {
 }
 
 function makeHeader(days) {
-  return`
+  return `
   <div class="tabs-container flex flex-between">
     ${makeTabs(days)}
   </div>
-  `
+  `;
 }
 
 function makeTabs(days) {
   if (!days || days.length === 0) {
     return "";
   }
-  five_days = days.slice(0,5)
+  five_days = days.slice(0, 5);
   return five_days
     .map((day) => {
-      const shorthand = day.name.split(" ").slice(0,3).map(word => word.slice(0,3)).join(" ")
-      return `<button onclick="handleTabClick" id=${day.id} class="tab-link font-sans">${shorthand}</button>`;
+      const date = dateFns.format(day.datetime, "ddd, MMM D")
+      return `<button onclick="handleTabClick" id=${day.id} class="tab-link font-sans">${date}</button>`;
     })
     .join(" ");
 }
@@ -226,13 +224,18 @@ function makeSpeakers(speakers) {
     .join(" ");
 }
 
+function makeEventTime(start, end){
+  console.log("START", start)
+  const startTime = dateFns.format(start, "H:mm")
+  const endTime = dateFns.format(end, "H:mm")
+  return `${startTime} - ${endTime}`
+}
+
 function makeEventRow(event) {
   const events_class = (event.events && "accordion") || "";
   return `
     <div class="p2 border ${events_class}">
-      <p class="h4 mb0 mt1 text-dark bold font-sans ">${event.start} - ${
-    event.end
-  }</p>
+      <p class="h4 mb0 mt1 text-dark bold font-sans ">${makeEventTime(event.start, event.end)}</p>
       <p class="h4 mt0 text-dark bold font-sans ">${event.title}</p>
       <div class="list-reset ">
         ${makeSpeakers(event.speakers)}
@@ -257,6 +260,37 @@ function makeEvents(events) {
   return events.map((event) => makeEventRow(event)).join(" ");
 }
 
+function fullDateFormat(datetime){
+  const year = datetime.getFullYear() 
+  const date = datetime.getDate() 
+  const months = [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December'
+  ]
+  datetime.getMonth()
+  const monthName = month[datetime.getMonth()]
+  const days = [
+    'Sun',
+    'Mon',
+    'Tue',
+    'Wed',
+    'Thu',
+    'Fri',
+    'Sat'
+  ]
+  const dayName = days[datetime.getDay()]
+}
+
 function renderEventsDOM() {
   const eventsHtml = makeEvents(eventData);
   document.getElementById("eventGrid").innerHTML = eventsHtml;
@@ -264,7 +298,9 @@ function renderEventsDOM() {
 
 const headerHtml = makeHeader(days);
 
-renderEventsDOM()
+renderEventsDOM();
 document.getElementById("header").innerHTML = headerHtml;
 document.addEventListener("click", handleAccordionClick);
-document.querySelectorAll(".tab-link").forEach(tab => tab.onclick = handleTabClick)
+document
+  .querySelectorAll(".tab-link")
+  .forEach((tab) => (tab.onclick = handleTabClick));
