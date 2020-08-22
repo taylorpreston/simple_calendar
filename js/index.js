@@ -227,8 +227,6 @@ function handleAccordionClick(event) {
   }
 
   closestAccordion.classList.add("active");
-  // console.log("CLOSEST ACC:", closestAccordion);
-  // console.log("YAY!!!");
 }
 
 function makeHeader(days) {
@@ -237,6 +235,12 @@ function makeHeader(days) {
     ${makeTabs(days)}
   </div>
   `;
+}
+
+function makeBlueBar(day){
+  return`
+    <div>${day.datetime}</div>
+  `
 }
 
 function makeTabs(days) {
