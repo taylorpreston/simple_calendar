@@ -5,8 +5,8 @@ console.log("CONNECTED INDEX.JS");
 // TODOS
 // X Tabs functionality - persists ID of tab somewhere / local storage in futute
 // X Tabs UX/UI responsive blah blah blah all tabs same size / font sizes / Use date time --- maybe date-fn 2.0 package
+// X Replace speakers with new members from schema
 // )
-// ) Replace speakers with new members from schema
 // ) Header
 // ) Dropdown animations
 // ) Arrow animation and location
@@ -20,10 +20,16 @@ const data = [
     end: new Date(2020, 11, 25, 10),
     description:
       " I am a really long description of a thing that is going to an event that people are going to come to and it should be fun.",
-    speakers: [
-      "Michelle Albert, LPC, CSOTP – Igneous Solutions / Michelle S. Albert, LPC, CSOTP",
-      "Ryan Morgan – Law Enforcement",
-    ],
+      members: [
+        {
+          type: "Speaker",
+          name: "Michelle Albert",
+        },
+        {
+          type: "Speaker",
+          name: "Albert",
+        },
+      ],
   },
   {
     title: "EMS Supervisor Leadership Academy - Part 1",
@@ -31,9 +37,15 @@ const data = [
     end: new Date(2019, 11, 25, 11),
     description:
       "I am a really long description of a thing that is going to an event that people are going to come to and it should be fun.",
-    speakers: [
-      "Michelle Albert, LPC, CSOTP – Igneous Solutions / Michelle S. Albert, LPC, CSOTP",
-      "Ryan Morgan – Law Enforcement",
+    members: [
+      {
+        type: "Speaker",
+        name: "Michelle Albert",
+      },
+      {
+        type: "Speaker",
+        name: "Albert",
+      },
     ],
     badges: [
       {
@@ -68,10 +80,16 @@ const data = [
     end: new Date(2019, 11, 25, 12),
     description:
       "I am a really long description of a thing that is going to an event that people are going to come to and it should be fun.",
-    speakers: [
-      "Michelle Albert, LPC, CSOTP – Igneous Solutions / Michelle S. Albert, LPC, CSOTP",
-      "Ryan Morgan – Law Enforcement",
-    ],
+      members: [
+        {
+          type: "Speaker",
+          name: "Michelle Albert",
+        },
+        {
+          type: "Speaker",
+          name: "Albert",
+        },
+      ],
     badges: [
       {
         color: "teal",
@@ -85,10 +103,16 @@ const data = [
         end: new Date(2020, 8, 10, 10),
         description:
           "I am a really long description of a thing that is going to an event that people are going to come to and it should be fun.",
-        speakers: [
-          "Michelle Albert, LPC, CSOTP – Igneous Solutions / Michelle S. Albert, LPC, CSOTP",
-          "Ryan Morgan – Law Enforcement",
-        ],
+          members: [
+            {
+              type: "Speaker",
+              name: "Michelle Albert",
+            },
+            {
+              type: "Speaker",
+              name: "Albert",
+            },
+          ],
         badges: [
           {
             color: "blue",
@@ -233,8 +257,9 @@ function handleAccordionClick(event) {
 
 function makeHeader(days) {
   return `
-  <div class="tabs-container flex flex-between">
+  <div class="tabs-container">
     ${makeTabs(days)}
+    <h1 class="">EMS World Expo 2020</h1>
   </div>
   `;
 }
@@ -245,7 +270,7 @@ function makeTabs(days) {
   }
   return days
     .map((day) => {
-      let date = '';
+      let date = "";
       if (typeof day.datetime === "string") {
         date = day.datetime;
       }
@@ -268,16 +293,16 @@ function makeBadges(badges) {
     .join(" ");
 }
 
-function makeSpeakers(speakers) {
-  if (!speakers || speakers.length == 0) {
+function makeMembers(members) {
+  if (!members || members.length == 0) {
     return "";
   }
-  return speakers
+  return members
     .map(
-      (speaker) =>
+      (member) =>
         `
         <li class="h5 font-sans text-grey">
-        Speaker: ${speaker}
+        ${member.type}: ${member.name}
         </li>
       `
     )
@@ -312,7 +337,7 @@ function makeEventRow(event) {
       )}</p>
       <p class="h4 mt0 text-dark bold font-sans ">${event.title}</p>
       <div class="list-reset ">
-        ${makeSpeakers(event.speakers)}
+        ${makeMembers(event.members)}
       </div>
       <div class="flex flex-wrap ">
         ${makeBadges(event.badges)}
@@ -347,13 +372,15 @@ function makeDays(days) {
   if (!days || days.length === 0) {
     return "";
   }
-  return days.map(
-    (day) =>
-    `<div>
+  return days
+    .map(
+      (day) =>
+        `<div>
       <p class="h4 p2 m0 bold white bg-blue">${makeDateTitle(day.datetime)}</p>
       ${makeEvents(day.events)}
     </div>`
-  ).join(" ")
+    )
+    .join(" ");
 }
 
 function renderEventsDOM() {
