@@ -1,3 +1,5 @@
 Simple HTML Events Calendar
 
-To compile SCSS run `sass --watch styles.scss:styles.css`
+To run in dev mode `npm run dev`
+
+To run in production `npm run build`
