@@ -191,7 +191,8 @@ function makeTabs(days) {
   five_days = days.slice(0, 5);
   return five_days
     .map((day) => {
-      return `<button onclick="handleTabClick" id=${day.id} class="tab-link font-sans">${day.datetime}</button>`;
+      const date = dateFns.format(day.datetime, "ddd, MMM D")
+      return `<button onclick="handleTabClick" id=${day.id} class="tab-link font-sans">${date}</button>`;
     })
     .join(" ");
 }
