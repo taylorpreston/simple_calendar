@@ -38,6 +38,7 @@ function makeEvents(events) {
   if (!events || events.length === 0) {
     return "";
   }
+  console.log("events", events)
   return events.map((event) => makeEventRow(event)).join(" ");
 }
 
