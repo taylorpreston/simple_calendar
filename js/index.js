@@ -1,6 +1,7 @@
-const { format } = require("path");
-
 console.log("CONNECTED INDEX.JS");
+
+import makeDays from "./makers/days"
+import makeHeader from "./makers/header"
 
 // TODOS
 // X Tabs functionality - persists ID of tab somewhere / local storage in futute
@@ -255,136 +256,9 @@ function handleAccordionClick(event) {
   closestAccordion.classList.add("active");
 }
 
-function makeHeader(days) {
-  return `
-  <div class="tabs-container">
-    ${makeTabs(days)}
-    <h1 class="">EMS World Expo 2020</h1>
-  </div>
-  `;
-}
-
-function makeTabs(days) {
-  if (!days || days.length === 0) {
-    return "";
-  }
-  return days
-    .map((day) => {
-      let date = "";
-      if (typeof day.datetime === "string") {
-        date = day.datetime;
-      }
-      if (typeof day.datetime === "object") {
-        date = dateFns.format(day.datetime, "ddd, MMM D");
-      }
-      return `<button onclick="handleTabClick" id=${day.id} class="tab-link font-sans">${date}</button>`;
-    })
-    .join(" ");
-}
-
-function makeBadges(badges) {
-  if (!badges || badges.length === 0) {
-    return "";
-  }
-  return badges
-    .map((badge) => {
-      return `<p class="badge font-sans ${badge.color}">${badge.name}</p>`;
-    })
-    .join(" ");
-}
-
-function makeMembers(members) {
-  if (!members || members.length == 0) {
-    return "";
-  }
-  return members
-    .map(
-      (member) =>
-        `
-        <li class="h5 font-sans text-grey">
-        ${member.type}: ${member.name}
-        </li>
-      `
-    )
-    .join(" ");
-}
-
-function makeEventTime(start, end) {
-  // console.log("START", start);
-  const startTime = dateFns.format(start, "H:mm");
-  const endTime = dateFns.format(end, "H:mm");
-  return `${startTime} - ${endTime}`;
-}
-
-function makeFaIcon(events) {
-  if (events && events.length) {
-    return `
-    <i class="fa fa-angle-down"></i>
-    `;
-  } else {
-    return "";
-  }
-}
-
-function makeEventRow(event) {
-  const events_class = (event.events && "accordion") || "";
-  makeFaIcon(event);
-  return `
-    <div class="p2 border ${events_class}">
-      <p class="h4 mb0 mt1 text-dark bold font-sans ">${makeEventTime(
-        event.start,
-        event.end
-      )}</p>
-      <p class="h4 mt0 text-dark bold font-sans ">${event.title}</p>
-      <div class="list-reset ">
-        ${makeMembers(event.members)}
-      </div>
-      <div class="flex flex-wrap ">
-        ${makeBadges(event.badges)}
-      </div>
-      <div>
-        ${makeFaIcon(event.events)}
-      </div>
-      <div class="dropdown">
-        ${makeEvents(event.events)}
-      </div>
-    </div>
-  `;
-}
-
-function makeEvents(events) {
-  if (!events || events.length === 0) {
-    return "";
-  }
-  return events.map((event) => makeEventRow(event)).join(" ");
-}
-
-function makeDateTitle(datetime) {
-  if (typeof datetime === "string") {
-    return datetime;
-  }
-  if (typeof datetime === "object") {
-    return dateFns.format(datetime, "dddd, MMMM D, YYYY");
-  }
-}
-
-function makeDays(days) {
-  if (!days || days.length === 0) {
-    return "";
-  }
-  return days
-    .map(
-      (day) =>
-        `<div>
-      <p class="h4 p2 m0 bold white bg-blue">${makeDateTitle(day.datetime)}</p>
-      ${makeEvents(day.events)}
-    </div>`
-    )
-    .join(" ");
-}
 
 function renderEventsDOM() {
-  const eventsHtml = makeDays(days);
+  const eventsHtml = makeDays(days)
   document.getElementById("eventGrid").innerHTML = eventsHtml;
 }
 
