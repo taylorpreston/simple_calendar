@@ -19,7 +19,7 @@ function makeEventRow(event) {
       )}</p>
       <p class="h4 mt0 text-dark bold font-sans ">${event.title}</p>
       <div class="list-reset ">
-        ${makeMembers(event.speakers)}
+        ${makeMembers(event.members)}
       </div>
       <div class="flex flex-wrap ">
         ${makeBadges(event.badges)}

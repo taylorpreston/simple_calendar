@@ -8,6 +8,7 @@ import makeHeader from "./makers/header"
 // X Tabs UX/UI responsive blah blah blah all tabs same size / font sizes / Use date time --- maybe date-fn 2.0 package
 // X Replace speakers with new members from schema
 // )
+// ) All day remove duplicate data
 // ) Header
 // ) Dropdown animations
 // ) Arrow animation and location
