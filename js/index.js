@@ -219,12 +219,12 @@ function handleAccordionClick(event) {
   }
 
   // For loop to remove active class from any opened
-    const allAccordion = document.querySelectorAll(".accordion")
+  const allAccordion = document.querySelectorAll(".accordion");
 
-    for (let i = 0; i < allAccordion.length; i++) {
-      const accordion = allAccordion[i];
-      accordion.classList.remove("active")
-    }
+  for (let i = 0; i < allAccordion.length; i++) {
+    const accordion = allAccordion[i];
+    accordion.classList.remove("active");
+  }
 
   closestAccordion.classList.add("active");
   // console.log("CLOSEST ACC:", closestAccordion);
@@ -245,7 +245,7 @@ function makeTabs(days) {
   }
   return days
     .map((day) => {
-      const date = dateFns.format(day.datetime, "ddd, MMM D")
+      const date = dateFns.format(day.datetime, "ddd, MMM D");
       return `<button onclick="handleTabClick" id=${day.id} class="tab-link font-sans">${date}</button>`;
     })
     .join(" ");
@@ -278,18 +278,32 @@ function makeSpeakers(speakers) {
     .join(" ");
 }
 
-function makeEventTime(start, end){
-  console.log("START", start)
-  const startTime = dateFns.format(start, "H:mm")
-  const endTime = dateFns.format(end, "H:mm")
-  return `${startTime} - ${endTime}`
+function makeEventTime(start, end) {
+  console.log("START", start);
+  const startTime = dateFns.format(start, "H:mm");
+  const endTime = dateFns.format(end, "H:mm");
+  return `${startTime} - ${endTime}`;
+}
+
+function makeFaIcon(events) {
+  if (events && events.length) {
+    return `
+    <i class="fa fa-angle-down"></i>
+    `;
+  }else{
+    return ""
+  }
 }
 
 function makeEventRow(event) {
   const events_class = (event.events && "accordion") || "";
+  makeFaIcon(event);
   return `
     <div class="p2 border ${events_class}">
-      <p class="h4 mb0 mt1 text-dark bold font-sans ">${makeEventTime(event.start, event.end)}</p>
+      <p class="h4 mb0 mt1 text-dark bold font-sans ">${makeEventTime(
+        event.start,
+        event.end
+      )}</p>
       <p class="h4 mt0 text-dark bold font-sans ">${event.title}</p>
       <div class="list-reset ">
         ${makeSpeakers(event.speakers)}
@@ -298,7 +312,7 @@ function makeEventRow(event) {
         ${makeBadges(event.badges)}
       </div>
       <div>
-        <i class="fa fa-angle-down"></i>
+        ${makeFaIcon(event.events)}
       </div>
       <div class="dropdown">
         ${makeEvents(event.events)}
@@ -314,35 +328,27 @@ function makeEvents(events) {
   return events.map((event) => makeEventRow(event)).join(" ");
 }
 
-function fullDateFormat(datetime){
-  const year = datetime.getFullYear() 
-  const date = datetime.getDate() 
+function fullDateFormat(datetime) {
+  const year = datetime.getFullYear();
+  const date = datetime.getDate();
   const months = [
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-    'July',
-    'August',
-    'September',
-    'October',
-    'November',
-    'December'
-  ]
-  datetime.getMonth()
-  const monthName = month[datetime.getMonth()]
-  const days = [
-    'Sun',
-    'Mon',
-    'Tue',
-    'Wed',
-    'Thu',
-    'Fri',
-    'Sat'
-  ]
-  const dayName = days[datetime.getDay()]
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+  datetime.getMonth();
+  const monthName = month[datetime.getMonth()];
+  const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  const dayName = days[datetime.getDay()];
 }
 
 function renderEventsDOM() {
