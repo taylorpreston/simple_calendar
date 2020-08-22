@@ -1,23 +1,23 @@
-$red: #d11141;
-$green: #00b159;
-$blue: #00aedb;
-$orange: #f37735;
-$yellow: #ffc425;
-$teal: #35a79c;
-
 $black: #212121;
+$blue: #00aedb;
+$green: #00b159;
+$orange: #f37735;
+$red: #d11141;
+$teal: #35a79c;
+$white: #f1f1f1;
+$yellow: #ffc425;
 
 .border {
   border-color: lightgray;
 }
 
 .badge {
+  background: lightgray;
+  border-radius: 12px;
+  color: white;
+  font-size: 12px;
   margin: 0.25em 0.25em 0.5em 0em;
   padding: 4px 6px;
-  color: white;
-  background: lightgray;
-  font-size: 12px;
-  border-radius: 12px;
 
   &.teal {
     background: $teal;
@@ -86,16 +86,16 @@ $black: #212121;
 }
 
 .tabs-container {
-  overflow: hidden;
-  border: 1px solid #ccc;
   background-color: #f1f1f1;
-
+  border: 1px solid #ccc;
+  display: inline-flex;
+  overflow: hidden;
   button {
     background-color: inherit;
-    float: left;
     border: none;
-    outline: none;
     cursor: pointer;
+    float: left;
+    outline: none;
     padding: 1em .5em;
     transition: 0.3s;
     font-size: calc(12px + (18 - 12) * ((100vw - 300px) / (1600 - 300)));
@@ -106,4 +106,12 @@ $black: #212121;
       background-color:$yellow;
     }
   }
+}
+
+.bg-blue{
+  background-color: $blue;
+}
+
+.white{
+  color: $white;
 }

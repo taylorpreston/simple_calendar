@@ -1,8 +1,10 @@
+const { format } = require("path");
+
 console.log("CONNECTED INDEX.JS");
 
 // TODOS
 // X Tabs functionality - persists ID of tab somewhere / local storage in futute
-// ) Tabs UX/UI responsive blah blah blah all tabs same size / font sizes / Use date time --- maybe date-fn 2.0 package
+// X Tabs UX/UI responsive blah blah blah all tabs same size / font sizes / Use date time --- maybe date-fn 2.0 package
 // )
 // ) Replace speakers with new members from schema
 // ) Header
@@ -237,19 +239,19 @@ function makeHeader(days) {
   `;
 }
 
-function makeBlueBar(day){
-  return`
-    <div>${day.datetime}</div>
-  `
-}
-
 function makeTabs(days) {
   if (!days || days.length === 0) {
     return "";
   }
   return days
     .map((day) => {
-      const date = dateFns.format(day.datetime, "ddd, MMM D");
+      let date = '';
+      if (typeof day.datetime === "string") {
+        date = day.datetime;
+      }
+      if (typeof day.datetime === "object") {
+        date = dateFns.format(day.datetime, "ddd, MMM D");
+      }
       return `<button onclick="handleTabClick" id=${day.id} class="tab-link font-sans">${date}</button>`;
     })
     .join(" ");
@@ -283,7 +285,7 @@ function makeSpeakers(speakers) {
 }
 
 function makeEventTime(start, end) {
-  console.log("START", start);
+  // console.log("START", start);
   const startTime = dateFns.format(start, "H:mm");
   const endTime = dateFns.format(end, "H:mm");
   return `${startTime} - ${endTime}`;
@@ -294,8 +296,8 @@ function makeFaIcon(events) {
     return `
     <i class="fa fa-angle-down"></i>
     `;
-  }else{
-    return ""
+  } else {
+    return "";
   }
 }
 
@@ -333,26 +335,29 @@ function makeEvents(events) {
 }
 
 function makeDateTitle(datetime) {
-  // if not date time return string
-  // if is date time return formatted date
-  return "Hello title"
+  if (typeof datetime === "string") {
+    return datetime;
+  }
+  if (typeof datetime === "object") {
+    return dateFns.format(datetime, "dddd, MMMM D, YYYY");
+  }
 }
 
 function makeDays(days) {
   if (!days || days.length === 0) {
-    return ""
+    return "";
   }
-
-  return days.map((day) => (
+  return days.map(
+    (day) =>
     `<div>
-      <p class="h4">${makeDateTitle(day.datetime)}</p>
+      <p class="h4 p2 m0 bold white bg-blue">${makeDateTitle(day.datetime)}</p>
       ${makeEvents(day.events)}
     </div>`
-  ))
+  ).join(" ")
 }
 
 function renderEventsDOM() {
-  const eventsHtml = makeDays(days)
+  const eventsHtml = makeDays(days);
   document.getElementById("eventGrid").innerHTML = eventsHtml;
 }
 
