@@ -364,7 +364,7 @@ function makeDateTitle(datetime) {
     return datetime;
   }
   if (typeof datetime === "object") {
-    return dateFns.format(datetime, "dddd, MMMM D, YYYY");
+    return dateFns.format(datetime, "dddd, MMMM D, 0YYYY");
   }
 }
 
