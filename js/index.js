@@ -113,6 +113,59 @@ const data = [
       },
     ],
   },
+  {
+    title: "Dropdown event",
+    start: new Date(2019, 11, 25, 8),
+    end: new Date(2019, 11, 25, 12),
+    description:
+      "I am a really long description of a thing that is going to an event that people are going to come to and it should be fun.",
+    speakers: [
+      "Michelle Albert, LPC, CSOTP – Igneous Solutions / Michelle S. Albert, LPC, CSOTP",
+      "Ryan Morgan – Law Enforcement",
+    ],
+    badges: [
+      {
+        color: "teal",
+        name: "Exhibit Hall Events",
+      },
+    ],
+    events: [
+      {
+        title: "Dropdown event",
+        start: new Date(2020, 8, 10, 8),
+        end: new Date(2020, 8, 10, 10),
+        description:
+          "I am a really long description of a thing that is going to an event that people are going to come to and it should be fun.",
+        speakers: [
+          "Michelle Albert, LPC, CSOTP – Igneous Solutions / Michelle S. Albert, LPC, CSOTP",
+          "Ryan Morgan – Law Enforcement",
+        ],
+        badges: [
+          {
+            color: "blue",
+            name: "Some beach somewhere",
+          },
+        ],
+      },
+      {
+        title: "Dropdown event",
+        start: new Date(2020, 8, 10, 8),
+        end: new Date(2020, 8, 10, 10),
+        description:
+          "I am a really long description of a thing that is going to an event that people are going to come to and it should be fun.",
+        speakers: [
+          "Michelle Albert, LPC, CSOTP – Igneous Solutions / Michelle S. Albert, LPC, CSOTP",
+          "Ryan Morgan – Law Enforcement",
+        ],
+        badges: [
+          {
+            color: "blue",
+            name: "Some beach somewhere",
+          },
+        ],
+      },
+    ],
+  },
 ];
 
 const testEvents = (day) => {
@@ -130,10 +183,6 @@ let days = [
   { id: 2, datetime: new Date(2019, 11, 25, 8), events: [] },
   { id: 3, datetime: new Date(2019, 11, 25, 8), events: [] },
   { id: 4, datetime: new Date(2019, 11, 25, 8), events: [] },
-  { id: 6, datetime: new Date(2019, 11, 25, 8), events: [] },
-  { id: 7, datetime: new Date(2019, 11, 25, 8), events: [] },
-  { id: 8, datetime: new Date(2019, 11, 25, 8), events: [] },
-  { id: 9, datetime: new Date(2019, 11, 25, 8), events: [] },
 ];
 
 let dayId = 0;
@@ -170,10 +219,16 @@ function handleAccordionClick(event) {
   }
 
   // For loop to remove active class from any opened
+    const allAccordion = document.querySelectorAll(".accordion")
+
+    for (let i = 0; i < allAccordion.length; i++) {
+      const accordion = allAccordion[i];
+      accordion.classList.remove("active")
+    }
 
   closestAccordion.classList.add("active");
-  console.log("CLOSEST ACC:", closestAccordion);
-  console.log("YAY!!!");
+  // console.log("CLOSEST ACC:", closestAccordion);
+  // console.log("YAY!!!");
 }
 
 function makeHeader(days) {
@@ -188,8 +243,7 @@ function makeTabs(days) {
   if (!days || days.length === 0) {
     return "";
   }
-  five_days = days.slice(0, 5);
-  return five_days
+  return days
     .map((day) => {
       const date = dateFns.format(day.datetime, "ddd, MMM D")
       return `<button onclick="handleTabClick" id=${day.id} class="tab-link font-sans">${date}</button>`;
