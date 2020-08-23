@@ -112,23 +112,23 @@ header{
   overflow: hidden;
   button {
     background-color: inherit;
+    border-bottom: 1px solid lightgrey;
     border: none;
     cursor: pointer;
     float: left;
+    font-size: calc(12px + (18 - 12) * ((100vw - 300px) / (1600 - 300)));
     padding: 1em 0.5em;
     transition: 0.3s;
-    font-size: calc(12px + (18 - 12) * ((100vw - 300px) / (1600 - 300)));
     width: 100%;
-    border-bottom: 1px solid lightgrey;
     &:hover {
       background-color: #ddd;
     }
     &.active {
       background-color: $white;
       border-bottom: none;
-      border-top: 1px solid lightgrey;
-      border-right: 1px solid lightgrey;
       border-left: 1px solid lightgrey;
+      border-right: 1px solid lightgrey;
+      border-top: 1px solid lightgrey;
     }
   }
 }
