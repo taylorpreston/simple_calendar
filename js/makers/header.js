@@ -1,12 +1,12 @@
-import makeTabs from "./tabs"
+import makeTabs from "./tabs";
 
 function makeHeader(days) {
   return `
-  <div class="tabs-container">
-    ${makeTabs(days)}
-    <h1 class="">EMS World Expo 2020</h1>
-  </div>
+    <div class="tabs-container">
+      ${makeTabs(days)}
+    </div>
+    <h1 class="border m0 p2 text-dark">EMS World Expo 2020</h1>
   `;
 }
 
-export default makeHeader
+export default makeHeader;

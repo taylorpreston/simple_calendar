@@ -4,8 +4,9 @@ $green: #00b159;
 $orange: #f37735;
 $red: #d11141;
 $teal: #35a79c;
-$white: #f1f1f1;
+$light-grey: #f1f1f1;
 $yellow: #ffc425;
+$white: #fff;
 
 .border {
   border-color: lightgray;
@@ -58,7 +59,8 @@ $yellow: #ffc425;
 
 .accordion {
   .dropdown {
-    display: none;
+    max-height: 0;
+    overflow: hidden;
   }
   &:hover {
     cursor: pointer;
@@ -68,9 +70,18 @@ $yellow: #ffc425;
       transform: rotate(180deg);
     }
     .dropdown {
-      display: block;
+      max-height: 100%;
     }
   }
+}
+
+.dropdown{
+  transition: max-height .3s ease-out;
+}
+
+.fa{
+  transition: 0.3s;
+  font-size: 30px;
 }
 
 .box-shadow {
@@ -86,7 +97,7 @@ $yellow: #ffc425;
 }
 
 .tabs-container {
-  background-color: #f1f1f1;
+  background-color: $light-grey;
   border: 1px solid #ccc;
   display: inline-flex;
   overflow: hidden;
@@ -96,22 +107,22 @@ $yellow: #ffc425;
     cursor: pointer;
     float: left;
     outline: none;
-    padding: 1em .5em;
+    padding: 1em 0.5em;
     transition: 0.3s;
     font-size: calc(12px + (18 - 12) * ((100vw - 300px) / (1600 - 300)));
     &:hover {
       background-color: #ddd;
     }
     &.active {
-      background-color:$yellow;
+      background-color: $yellow;
     }
   }
 }
 
-.bg-blue{
+.bg-blue {
   background-color: $blue;
 }
 
-.white{
-  color: $white;
+.white {
+  color: $light-grey;
 }

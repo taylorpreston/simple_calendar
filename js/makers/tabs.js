@@ -4,7 +4,14 @@ function makeTabs(days) {
   }
   return days
     .map((day) => {
-      const date = dateFns.format(day.datetime, "ddd, MMM D");
+      console.log(day)
+      let date = ""
+      if(typeof day.datetime === "string"){
+        date = day.datetime
+      }else{
+        date = dateFns.format(day.datetime, "ddd, MMM D");
+      }
+
       return `<button onclick="handleTabClick" id=${day.id} class="tab-link font-sans">${date}</button>`;
     })
     .join(" ");
