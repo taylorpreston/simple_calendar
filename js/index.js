@@ -7,10 +7,9 @@ import days from "./mock"
 // X Tabs functionality - persists ID of tab somewhere / local storage in futute
 // X Tabs UX/UI responsive blah blah blah all tabs same size / font sizes / Use date time --- maybe date-fn 2.0 package
 // X Replace speakers with new members from schema
-// X Header
+// X Dropdown animations
 // )
 // ) Header
-// ) Dropdown animations
 // ) Arrow animation and locations
 
 function handleTabClick(event) {

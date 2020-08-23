@@ -15,20 +15,14 @@ function makeDays(days) {
 
   const currentDays = EventsState.getDays()
   const currentId = EventsState.getId()
-  const currentEvents = currentDays[currentId]
-  console.log("CURRENT DAYS:", currentDays)
-  console.log("CURRENT ID:", currentId)
-  console.log("CURRENT Events:", currentEvents)
+  const currentDay = currentDays[currentId]
 
-  return days
-    .map(
-      (day) =>
-        `<div>
-      <p class="h4 p2 m0 bold white bg-blue">${makeDateTitle(day.datetime)}</p>
-      ${makeEvents(currentEvents.events)}
+  return (
+    `<div>
+      <p class="h4 p2 m0 bold white bg-blue">${makeDateTitle(currentDay.datetime)}</p>
+      ${makeEvents(currentDay.events)}
     </div>`
-    )
-    .join(" ");
+  )
 }
 
 
