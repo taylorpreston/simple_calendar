@@ -1,5 +1,5 @@
 console.log("CONNECTED INDEX.JS");
-
+import EventsState from './state';
 import makeDays from "./makers/days"
 import makeHeader from "./makers/header"
 import days from "./mock"
@@ -9,20 +9,13 @@ import days from "./mock"
 // X Replace speakers with new members from schema
 // X Header
 // )
-// ) All day remove duplicate data
-// X Dropdown animations
-// ) Arrow animation and location
-// ) Header more styling
-
-let dayId = 0;
-
-function updateEventsData() {
-  eventData = days[dayId].events;
-  console.log("UPDATE EVENTS:", dayId);
-}
+// ) Header
+// ) Dropdown animations
+// ) Arrow animation and locations
 
 function handleTabClick(event) {
-  dayId = event.target.id;
+  const dayId = event.target.id;
+  EventsState.setId(dayId)
   const tabs = document.querySelectorAll(".tab-link");
   tabs.forEach((tab) => {
     if (tab.id === dayId) {
@@ -31,7 +24,6 @@ function handleTabClick(event) {
       tab.classList.remove("active");
     }
   });
-  updateEventsData();
   renderEventsDOM();
 }
 
@@ -63,6 +55,9 @@ function renderEventsDOM() {
   const eventsHtml = makeDays(days)
   document.getElementById("eventGrid").innerHTML = eventsHtml;
 }
+
+EventsState.setDays(days)
+EventsState.setId(0)
 
 const headerHtml = makeHeader(days);
 
