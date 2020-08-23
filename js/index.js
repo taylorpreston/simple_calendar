@@ -8,9 +8,9 @@ import days from "./mock"
 // X Tabs UX/UI responsive blah blah blah all tabs same size / font sizes / Use date time --- maybe date-fn 2.0 package
 // X Replace speakers with new members from schema
 // X Dropdown animations
+// X Arrow locations
 // )
 // ) Header
-// ) Arrow animation and locations
 
 function handleTabClick(event) {
   const dayId = event.target.id;
