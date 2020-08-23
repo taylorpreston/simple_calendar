@@ -7,6 +7,16 @@ $teal: #35a79c;
 $light-grey: #f1f1f1;
 $yellow: #ffc425;
 $white: #fff;
+$dark-blue: #131539;
+
+header{
+
+  & h1{
+    border-left: 1px solid lightgrey;
+    border-right: 1px solid lightgrey;
+    border-bottom: 1px solid lightgrey;
+  }
+}
 
 .border {
   border-color: lightgray;
@@ -98,29 +108,33 @@ $white: #fff;
 
 .tabs-container {
   background-color: $light-grey;
-  border: 1px solid #ccc;
-  display: inline-flex;
+  display: flex;
   overflow: hidden;
   button {
     background-color: inherit;
     border: none;
     cursor: pointer;
     float: left;
-    outline: none;
     padding: 1em 0.5em;
     transition: 0.3s;
     font-size: calc(12px + (18 - 12) * ((100vw - 300px) / (1600 - 300)));
+    width: 100%;
+    border-bottom: 1px solid lightgrey;
     &:hover {
       background-color: #ddd;
     }
     &.active {
-      background-color: $yellow;
+      background-color: $white;
+      border-bottom: none;
+      border-top: 1px solid lightgrey;
+      border-right: 1px solid lightgrey;
+      border-left: 1px solid lightgrey;
     }
   }
 }
 
 .bg-blue {
-  background-color: $blue;
+  background-color: $dark-blue;
 }
 
 .white {

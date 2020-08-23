@@ -5,7 +5,7 @@ function makeHeader(days) {
     <div class="tabs-container">
       ${makeTabs(days)}
     </div>
-    <h1 class="border m0 p2 text-dark">EMS World Expo 2020</h1>
+    <h1 class="m0 p2 text-dark">EMS World Expo 2020</h1>
   `;
 }
 
