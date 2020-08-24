@@ -4,17 +4,20 @@ import makeDays from "./makers/days"
 import makeHeader from "./makers/header"
 import { fetchDays } from "./requests"
 // TODOS
-// X Tabs functionality - persists ID of tab somewhere / local storage in futute
-// X Tabs UX/UI responsive blah blah blah all tabs same size / font sizes / Use date time --- maybe date-fn 2.0 package
-// X Replace speakers with new members from schema
-// X Dropdown animations
-// X Arrow locations
-// )
-// ) Header
+// (X) Tabs functionality - persists ID of tab somewhere / local storage in futute
+// (X) Tabs UX/UI responsive blah blah blah all tabs same size / font sizes / Use date time --- maybe date-fn 2.0 package
+// (X) Replace speakers with new members from schema
+// (X) Dropdown animations
+// (X) Arrow locations
+// (X) Header
+// (X) TAB remove orange
+// ___________________________________________________________
+// () sponsored by logo, name alt html
+// () Dropdown
 
 function handleTabClick(event) {
   const dayId = event.target.id;
-  EventsState.setId(dayId)
+  EventsState.setId(dayId);
   const tabs = document.querySelectorAll(".tab-link");
   tabs.forEach((tab) => {
     if (tab.id === dayId) {
@@ -47,7 +50,6 @@ function handleAccordionClick(event) {
 
   closestAccordion.classList.add("active");
 }
-
 
 function renderEventsDOM(daysData) {
   const eventsHtml = makeDays(daysData)

@@ -1,6 +1,6 @@
-import makeArrowIcon from "./arrowIcon"
-import makeMembers from "./members"
-import makeBadges from "./badges"
+import makeArrowIcon from "./arrowIcon";
+import makeMembers from "./members";
+import makeBadges from "./badges";
 
 function makeEventTime(start, end) {
   const startTime = dateFns.format(start, "H:mm");
@@ -8,11 +8,12 @@ function makeEventTime(start, end) {
   return `${startTime} - ${endTime}`;
 }
 
-function makeEventRow(event) {
+function makeEventRow(event, isDropdown) {
   const events_class = (event.events && "accordion") || "";
+  const dropdown_class = (isDropdown && "panel") || "";
   makeArrowIcon(event);
   return `
-    <div class="p2 border ${events_class}">
+    <div class="border p2 ${events_class} ${dropdown_class}">
       <div class="flex">
         <div class="flex-auto">
           <p class="h4 mb0 mt1 text-dark bold font-sans ">${makeEventTime(
@@ -32,18 +33,17 @@ function makeEventRow(event) {
         </div>
       </div>
       <div class="dropdown">
-        ${makeEvents(event.events)}
+        ${makeEvents(event.events, true)}
       </div>
     </div>
   `;
 }
 
-function makeEvents(events) {
+function makeEvents(events, isDropdown = false) {
   if (!events || events.length === 0) {
     return "";
   }
-  console.log("events", events)
-  return events.map((event) => makeEventRow(event)).join(" ");
+  return events.map((event) => makeEventRow(event, isDropdown)).join(" ");
 }
 
-export default makeEvents
+export default makeEvents;
