@@ -1,72 +1,12 @@
 const data = [
   {
-    title: "Behavioral Health Workshop for EMS Providers - Part 1",
-    start: new Date(2020, 11, 25, 8),
-    end: new Date(2020, 11, 25, 10),
+    title: "Dropdown event",
+    start: new Date(2019, 11, 25, 8),
+    end: new Date(2019, 11, 25, 12),
     sponsor: {
       logo_url: "https://www.uschamberfoundation.org/sites/default/files/styles/detail_image800w/public/Pfizer%20Logo.gif?itok=PTpWwMuM",
       name: "Pfizer",
     },
-    description:
-      " I am a really long description of a thing that is going to an event that people are going to come to and it should be fun.",
-      members: [
-        {
-          type: "Speaker",
-          name: "Michelle Albert",
-        },
-        {
-          type: "Speaker",
-          name: "Albert",
-        },
-      ],
-  },
-  {
-    title: "EMS Supervisor Leadership Academy - Part 1",
-    start: new Date(2019, 11, 25, 8),
-    end: new Date(2019, 11, 25, 11),
-    description:
-      "I am a really long description of a thing that is going to an event that people are going to come to and it should be fun.",
-    members: [
-      {
-        type: "Speaker",
-        name: "Michelle Albert",
-      },
-      {
-        type: "Speaker",
-        name: "Albert",
-      },
-    ],
-    badges: [
-      {
-        color: "teal",
-        name: "Exhibit Hall Events",
-      },
-      {
-        color: "red",
-        name: "Exhibit Hall Events",
-      },
-      {
-        color: "green",
-        name: "Exhibit Hall Events",
-      },
-      {
-        color: "blue",
-        name: "Exhibit Hall Events",
-      },
-      {
-        color: "orange",
-        name: "Exhibit Hall Events",
-      },
-      {
-        color: "yellow",
-        name: "Exhibit Hall Events",
-      },
-    ],
-  },
-  {
-    title: "Dropdown event",
-    start: new Date(2019, 11, 25, 8),
-    end: new Date(2019, 11, 25, 12),
     description:
       "I am a really long description of a thing that is going to an event that people are going to come to and it should be fun.",
       members: [
