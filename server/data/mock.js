@@ -67,6 +67,10 @@ const data = [
     title: "Dropdown event",
     start: new Date(2019, 11, 25, 8),
     end: new Date(2019, 11, 25, 12),
+    sponsor: {
+      logo_url: "https://www.uschamberfoundation.org/sites/default/files/styles/detail_image800w/public/Pfizer%20Logo.gif?itok=PTpWwMuM",
+      name: "Pfizer",
+    },
     description:
       "I am a really long description of a thing that is going to an event that people are going to come to and it should be fun.",
       members: [
@@ -204,4 +208,4 @@ const days = [
   { id: 4, datetime: new Date(2019, 11, 26, 8), events: testEvents("THURSDAY") },
 ];
 
-export default days
+module.exports.days = days

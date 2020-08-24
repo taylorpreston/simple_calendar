@@ -1,8 +1,8 @@
 console.log("CONNECTED INDEX.JS");
-import EventsState from "./state";
-import makeDays from "./makers/days";
-import makeHeader from "./makers/header";
-import days from "./mock";
+import EventsState from './state';
+import makeDays from "./makers/days"
+import makeHeader from "./makers/header"
+import { fetchDays } from "./requests"
 // TODOS
 // (X) Tabs functionality - persists ID of tab somewhere / local storage in futute
 // (X) Tabs UX/UI responsive blah blah blah all tabs same size / font sizes / Use date time --- maybe date-fn 2.0 package
@@ -51,20 +51,29 @@ function handleAccordionClick(event) {
   closestAccordion.classList.add("active");
 }
 
-function renderEventsDOM() {
-  console.log("RENDER EVENTS DOM");
-  const eventsHtml = makeDays(days);
+function renderEventsDOM(daysData) {
+  const eventsHtml = makeDays(daysData)
   document.getElementById("eventGrid").innerHTML = eventsHtml;
 }
 
-EventsState.setDays(days);
-EventsState.setId(0);
+function renderHeadersDOM(daysData) {
+  const headerHtml = makeHeader(daysData);
+  document.getElementById("header").innerHTML = headerHtml;
+}
 
-const headerHtml = makeHeader(days);
+export function render(daysData) {
+  debugger
+  EventsState.setDays(daysData)
+  EventsState.setId(0)
+  renderHeadersDOM(daysData)
+  renderEventsDOM(daysData)
+  document.addEventListener("click", handleAccordionClick);
+  document
+    .querySelectorAll(".tab-link")
+    .forEach((tab) => (tab.onclick = handleTabClick));
 
-renderEventsDOM();
-document.getElementById("header").innerHTML = headerHtml;
-document.addEventListener("click", handleAccordionClick);
-document
-  .querySelectorAll(".tab-link")
-  .forEach((tab) => (tab.onclick = handleTabClick));
+}
+
+fetchDays()
+
+
