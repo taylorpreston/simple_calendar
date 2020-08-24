@@ -4,7 +4,6 @@ function makeTabs(days) {
   }
   return days
     .map((day) => {
-      console.log(day)
       let date = ""
       if(typeof day.datetime === "string"){
         date = day.datetime

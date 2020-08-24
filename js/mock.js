@@ -15,6 +15,10 @@ const data = [
           name: "Albert",
         },
       ],
+      sponsor: {
+        logo_url: "https://i1.wp.com/realestatebossmamas.com/wp-content/uploads/2018/02/logo-placeholder-1.png?fit=200%2C200",
+        name: "thing",
+       }
   },
   {
     title: "EMS Supervisor Leadership Academy - Part 1",
@@ -81,6 +85,10 @@ const data = [
         name: "Exhibit Hall Events",
       },
     ],
+    sponsor: {
+      logo_url: "https://placeholder.com/wp-content/uploads/2018/10/placeholder.com-logo3.jpg",
+      name: "thing",
+     },
     events: [
       {
         title: "Dropdown event",

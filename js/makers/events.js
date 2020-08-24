@@ -1,6 +1,7 @@
 import makeArrowIcon from "./arrowIcon";
 import makeMembers from "./members";
 import makeBadges from "./badges";
+import makeSponsor from "./sponsor";
 
 function makeEventTime(start, end) {
   const startTime = dateFns.format(start, "H:mm");
@@ -28,7 +29,10 @@ function makeEventRow(event, isDropdown) {
             ${makeBadges(event.badges)}
           </div>
         </div>
-        <div class="self-center">
+        <div class="sponsor flex flex-column self-center mr3">
+            ${makeSponsor(event.sponsor)}
+        </div>
+        <div class="self-end">
           ${makeArrowIcon(event.events)}
         </div>
       </div>
