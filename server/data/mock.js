@@ -200,4 +200,4 @@ const days = [
   { id: 4, datetime: new Date(2019, 11, 26, 8), events: testEvents("THURSDAY") },
 ];
 
-export default days
+module.exports.days = days

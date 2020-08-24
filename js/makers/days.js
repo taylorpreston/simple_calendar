@@ -12,7 +12,7 @@ function makeDays(days) {
   if (!days || days.length === 0) {
     return ""
   }
-
+ 
   const currentDays = EventsState.getDays()
   const currentId = EventsState.getId()
   const currentDay = currentDays[currentId]
