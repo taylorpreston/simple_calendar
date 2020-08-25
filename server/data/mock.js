@@ -45,22 +45,6 @@ const data = [
         color: "red",
         name: "Exhibit Hall Events",
       },
-      {
-        color: "green",
-        name: "Exhibit Hall Events",
-      },
-      {
-        color: "blue",
-        name: "Exhibit Hall Events",
-      },
-      {
-        color: "orange",
-        name: "Exhibit Hall Events",
-      },
-      {
-        color: "yellow",
-        name: "Exhibit Hall Events",
-      },
     ],
   },
   {
@@ -201,7 +185,6 @@ const testEvents = (day) => {
 };
 
 const days = [
-  { id: 0, datetime: "All Days", events: data },
   { id: 1, datetime: new Date(2019, 11, 23, 8), events: testEvents("MONDAY") },
   { id: 2, datetime: new Date(2019, 11, 24, 8), events: testEvents("TUESDAY") },
   { id: 3, datetime: new Date(2019, 11, 25, 8), events: testEvents("WEDNESDAY") },

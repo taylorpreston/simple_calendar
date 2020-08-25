@@ -24,8 +24,10 @@ header{
 }
 
 .panel{
-  margin: -16px;
   border: none;
+  border-top: 1px solid lightgrey;
+  padding-bottom: 16px;
+  margin: 0px -16px 0px -16px; 
 }
 
 .badge {
@@ -123,7 +125,7 @@ header{
     cursor: pointer;
     outline: none;
     float: left;
-    font-size: calc(12px + (18 - 12) * ((100vw - 300px) / (1600 - 300)));
+    font-size: 1em;
     padding: 1em 0.5em;
     transition: 0.3s;
     width: 100%;
@@ -149,11 +151,17 @@ header{
 }
 
 .sponsor{
+  display: relative;
   & img{
-    max-width: 15vw;
+    max-width: 12.5vw;
     max-height: 100px;
+    position: relative;
   }
-  & p{
+  &::before {
+    top: 1px;
+    right: 1px;
     font-size: 1vw;
+    content: "Sponsored By";
+    margin: auto;
   }
 }

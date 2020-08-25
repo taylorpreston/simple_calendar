@@ -31,6 +31,7 @@ function handleTabClick(event) {
 
 function handleAccordionClick(event) {
   const closestAccordion = event.target.closest(".accordion");
+  
   if (!closestAccordion) {
     return null;
   }
@@ -40,7 +41,6 @@ function handleAccordionClick(event) {
     return;
   }
 
-  // For loop to remove active class from any opened
   const allAccordion = document.querySelectorAll(".accordion");
 
   for (let i = 0; i < allAccordion.length; i++) {
@@ -51,22 +51,22 @@ function handleAccordionClick(event) {
   closestAccordion.classList.add("active");
 }
 
-function renderEventsDOM(daysData) {
-  const eventsHtml = makeDays(daysData)
+function renderEventsDOM() {
+  const currentDays = EventsState.getCurrentDays()
+  const eventsHtml = makeDays(currentDays)
   document.getElementById("eventGrid").innerHTML = eventsHtml;
 }
 
-function renderHeadersDOM(daysData) {
-  const headerHtml = makeHeader(daysData);
+function renderHeadersDOM() {
+  const days = EventsState.getDays()
+  const headerHtml = makeHeader(days);
   document.getElementById("header").innerHTML = headerHtml;
 }
 
 export function render(daysData) {
-  debugger
   EventsState.setDays(daysData)
-  EventsState.setId(0)
-  renderHeadersDOM(daysData)
-  renderEventsDOM(daysData)
+  renderHeadersDOM()
+  renderEventsDOM()
   document.addEventListener("click", handleAccordionClick);
   document
     .querySelectorAll(".tab-link")
@@ -74,6 +74,6 @@ export function render(daysData) {
 
 }
 
-fetchDays()
+fetchDays() // render function called in promise responses
 
 
