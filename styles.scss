@@ -1,3 +1,5 @@
+@use 'loader';
+
 $black: #212121;
 $blue: #00aedb;
 $green: #00b159;
@@ -9,9 +11,9 @@ $yellow: #ffc425;
 $white: #fff;
 $dark-blue: #131539;
 
-header{
+header {
 
-  & h1{
+  & h1 {
     font-size: 1.5em;
     border-left: 1px solid lightgrey;
     border-right: 1px solid lightgrey;
@@ -25,13 +27,13 @@ header{
   border-right: lightgrey solid 1px;
 }
 
-.panel{
+.panel {
   border: none;
   border-top: 1px solid lightgrey;
   padding-bottom: 16px;
   padding: 0px;
   width: 100%;
-  margin: 0px 0px; 
+  margin: 0px 0px;
   background-color: whitesmoke;
   background-clip: border-box;
   position: relative;
@@ -87,24 +89,27 @@ header{
     max-height: 0;
     overflow: hidden;
   }
+
   &:hover {
     cursor: pointer;
   }
+
   &.active {
     .fa {
       transform: rotate(180deg);
     }
+
     .dropdown {
       max-height: 100%;
     }
   }
 }
 
-.dropdown{
+.dropdown {
   transition: max-height .3s ease-out;
 }
 
-.fa{
+.fa {
   transition: 0.3s;
   font-size: 30px;
 }
@@ -125,6 +130,7 @@ header{
   background-color: $light-grey;
   display: flex;
   overflow: hidden;
+
   button {
     background-color: inherit;
     border: none;
@@ -136,9 +142,11 @@ header{
     padding: 1em 0.5em;
     transition: 0.3s;
     width: 100%;
+
     &:hover {
       background-color: #ddd;
     }
+
     &.active {
       background-color: $white;
       border-bottom: none;
@@ -157,13 +165,15 @@ header{
   color: $white;
 }
 
-.sponsor{
+.sponsor {
   display: relative;
-  & img{
+
+  & img {
     max-width: 12.5vw;
     max-height: 100px;
     position: relative;
   }
+
   &::before {
     top: 1px;
     right: 1px;

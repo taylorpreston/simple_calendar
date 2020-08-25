@@ -1,5 +1,5 @@
 import axios from "axios"
-import { render } from "./index"
+import { render, renderError } from "./index"
 export function fetchDays() {
   return axios.get("http://localhost:3000/")
     .then(response => {
@@ -7,6 +7,6 @@ export function fetchDays() {
     })
     .catch(err => {
       console.error("REQUEST ERROR:", err)
-      return err
+      renderError()
     })
 }

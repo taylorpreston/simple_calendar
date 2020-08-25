@@ -3,7 +3,47 @@ import EventsState from './state';
 import makeDays from "./makers/days"
 import makeHeader from "./makers/header"
 import { fetchDays } from "./requests"
-import { handleTabClick, handleAccordionClick } from "./handlers"
+
+function handleTabClick(event) {
+  const dayId = event.target.id;
+  EventsState.setId(dayId);
+  const tabs = document.querySelectorAll(".tab-link");
+  tabs.forEach((tab) => {
+    if (tab.id === dayId) {
+      tab.classList.add("active");
+    } else {
+      tab.classList.remove("active");
+    }
+  });
+  renderEventsDOM();
+}
+
+function handleAccordionClick(event) {
+  const closestAccordion = event.target.closest(".accordion");
+  
+  if (!closestAccordion) {
+    return null;
+  }
+
+  if (closestAccordion.classList.contains("active")) {
+    closestAccordion.classList.remove("active");
+    return;
+  }
+
+  const allAccordion = document.querySelectorAll(".accordion");
+
+  for (let i = 0; i < allAccordion.length; i++) {
+    const accordion = allAccordion[i];
+    accordion.classList.remove("active");
+  }
+
+  closestAccordion.classList.add("active");
+}
+
+function removeLoader() {
+  const loader = document.querySelector('.spinner')
+  loader.style.display = 'none'
+}
 
 function renderEventsDOM() {
   const currentDays = EventsState.getCurrentDays()
@@ -17,14 +57,25 @@ function renderTabsDom() {
   document.getElementById("header").innerHTML = headerHtml;
 }
 
+export function renderError() {
+  removeLoader()
+  const errorDOM = (
+    `<div class="overflow-auto fit center">
+      <p class="h3">There was an error loading your events. Reload and try again.</p>
+    </div>`
+  )
+  document.getElementById("error").innerHTML = errorDOM
+}
+
 export function render(daysData) {
   EventsState.setDays(daysData)
+  removeLoader()
   renderTabsDom()
   renderEventsDOM()
-  document.addEventListener("click", handleAccordionClick);
+  document.addEventListener("click", handleAccordionClick)
   document
     .querySelectorAll(".tab-link")
-    .forEach((tab) => (tab.onclick = handleTabClick));
+    .forEach((tab) => (tab.onclick = handleTabClick))
 
 }
 
