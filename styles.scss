@@ -19,15 +19,22 @@ header{
   }
 }
 
-.border {
-  border-color: lightgray;
+.grid-border {
+  border-bottom: lightgrey solid 1px;
+  border-left: lightgrey solid 1px;
+  border-right: lightgrey solid 1px;
 }
 
 .panel{
   border: none;
   border-top: 1px solid lightgrey;
   padding-bottom: 16px;
-  margin: 0px -16px 0px -16px; 
+  padding: 0px;
+  width: 100%;
+  margin: 0px 0px; 
+  background-color: whitesmoke;
+  background-clip: border-box;
+  position: relative;
 }
 
 .badge {
@@ -160,7 +167,7 @@ header{
   &::before {
     top: 1px;
     right: 1px;
-    font-size: 1vw;
+    font-size: 10px;
     content: "Sponsored By";
     margin: auto;
   }

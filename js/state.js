@@ -3,7 +3,6 @@ const EventsState = (() => {
   let _currentDayId = "all";
 
   const _getCurrentDays = () => {
-    console.log("get current days", _currentDayId)
     if(_currentDayId !== "all"){
       return _days.filter(day => day.id === parseInt(_currentDayId))
     }

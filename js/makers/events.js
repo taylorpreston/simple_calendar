@@ -14,8 +14,8 @@ function makeEventRow(event, isDropdown) {
   const dropdown_class = (isDropdown && "panel") || "";
   const sponsor_class = (event.sponsor && "sponsor") || "hidden";
   return `
-    <div class="border p2 ${events_class} ${dropdown_class}">
-      <div class="flex">
+    <div class="grid-border ${events_class} ${dropdown_class}">
+      <div class="flex p2">
         <div class="flex-auto">
           <p class="h4 mb0 mt1 text-dark bold font-sans ">${makeEventTime(
             event.start,
