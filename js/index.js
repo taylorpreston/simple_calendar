@@ -60,8 +60,9 @@ function renderTabsDom() {
 export function renderError() {
   removeLoader()
   const errorDOM = (
-    `<div class="overflow-auto fit center">
-      <p class="h3">There was an error loading your events. Reload and try again.</p>
+    `<div class="overflow-auto font-sans text-red fit center bg-red border-red m2">
+      <p class="h3 mb1">There was an error loading your events:</p>
+      <li class="h3 pb2">Reload and try again.</li>
     </div>`
   )
   document.getElementById("error").innerHTML = errorDOM

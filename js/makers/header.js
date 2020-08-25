@@ -1,7 +1,6 @@
 import makeTabs from "./tabs";
 
 function makeHeader(days) {
-  
   return `
     <div class="tabs-container">
       ${makeTabs(days)}
