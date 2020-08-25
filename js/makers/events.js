@@ -1,6 +1,7 @@
 import makeArrowIcon from "./arrowIcon";
 import makeMembers from "./members";
 import makeBadges from "./badges";
+import makeSponsor from "./sponsor";
 
 function makeEventTime(start, end) {
   const startTime = dateFns.format(start, "H:mm");
@@ -11,7 +12,7 @@ function makeEventTime(start, end) {
 function makeEventRow(event, isDropdown) {
   const events_class = (event.events && "accordion") || "";
   const dropdown_class = (isDropdown && "panel") || "";
-  makeArrowIcon(event);
+  const sponsor_class = (event.sponsor && "sponsor") || "hidden";
   return `
     <div class="border p2 ${events_class} ${dropdown_class}">
       <div class="flex">
@@ -28,6 +29,9 @@ function makeEventRow(event, isDropdown) {
             ${makeBadges(event.badges)}
           </div>
         </div>
+        <div class="${sponsor_class} flex flex-column self-center mr3">
+            ${makeSponsor(event.sponsor)}
+        </div>
         <div class="self-center">
           ${makeArrowIcon(event.events)}
         </div>
@@ -43,7 +47,11 @@ function makeEvents(events, isDropdown = false) {
   if (!events || events.length === 0) {
     return "";
   }
-  return events.map((event) => makeEventRow(event, isDropdown)).join(" ");
+  return events
+    .map((event) => {
+      return makeEventRow(event, isDropdown);
+    })
+    .join(" ");
 }
 
 export default makeEvents;

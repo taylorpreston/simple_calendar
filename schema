@@ -23,5 +23,5 @@ events: [{
     color: sting-class-name,
     name: string,
   }],
-  events: [{ exact spec as above }]
+  events: [{ exact spec as above }],
 }]

@@ -1,28 +1,30 @@
 import makeEvents from "./events"
 import EventsState from '../state';
 
-function makeDateTitle(datetime) {
-  if (typeof datetime === "string") {
-    return datetime;
+function makeDateTitle(day) {
+  if (day.id === "all") {
+    return day.datetime;
   }
-  return dateFns.format(datetime, "dddd, MMMM D, 0YYYY");
+  return dateFns.format(day.datetime, "dddd, MMMM D, YYYY");
 }
 
-function makeDays(days) {
-  if (!days || days.length === 0) {
+function makeDay(day) {
+  if (!day || day.length === 0) {
     return ""
   }
- 
-  const currentDays = EventsState.getDays()
-  const currentId = EventsState.getId()
-  const currentDay = currentDays[currentId]
+  
+  const events = makeEvents(day.events)
 
   return (
     `<div>
-      <p class="h4 p2 m0 bold white bg-blue">${makeDateTitle(currentDay.datetime)}</p>
-      ${makeEvents(currentDay.events)}
+      <p class="h4 p2 m0 bold white bg-blue">${makeDateTitle(day)}</p>
+      ${makeEvents(day.events)}
     </div>`
   )
+}
+
+function makeDays(days) {
+  return days.map(day => makeDay(day)).join(" ")
 }
 
 

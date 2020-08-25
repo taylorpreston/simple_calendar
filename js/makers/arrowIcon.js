@@ -1,7 +1,7 @@
 function makeArrowIcon(events) {
   if (events && events.length) {
     return `
-    <i class="fa fa-angle-down"></i>
+    <i" class="fa fa-angle-down"></i>
     `;
   }else{
     return ""
