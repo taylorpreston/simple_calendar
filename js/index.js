@@ -57,7 +57,7 @@ function renderEventsDOM() {
   document.getElementById("eventGrid").innerHTML = eventsHtml;
 }
 
-function renderHeadersDOM() {
+function renderTabsDom() {
   const days = EventsState.getDays()
   const headerHtml = makeHeader(days);
   document.getElementById("header").innerHTML = headerHtml;
@@ -65,7 +65,7 @@ function renderHeadersDOM() {
 
 export function render(daysData) {
   EventsState.setDays(daysData)
-  renderHeadersDOM()
+  renderTabsDom()
   renderEventsDOM()
   document.addEventListener("click", handleAccordionClick);
   document

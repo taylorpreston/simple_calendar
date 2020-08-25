@@ -1,53 +1,5 @@
 const data = [
   {
-    title: "Behavioral Health Workshop for EMS Providers - Part 1",
-    start: new Date(2020, 11, 25, 8),
-    end: new Date(2020, 11, 25, 10),
-    description:
-      " I am a really long description of a thing that is going to an event that people are going to come to and it should be fun.",
-      members: [
-        {
-          type: "Speaker",
-          name: "Michelle Albert",
-        },
-        {
-          type: "Speaker",
-          name: "Albert",
-        },
-      ],
-      sponsor: {
-        logo_url: "https://i1.wp.com/realestatebossmamas.com/wp-content/uploads/2018/02/logo-placeholder-1.png?fit=200%2C200",
-        name: "thing",
-       }
-  },
-  {
-    title: "EMS Supervisor Leadership Academy - Part 1",
-    start: new Date(2019, 11, 25, 8),
-    end: new Date(2019, 11, 25, 11),
-    description:
-      "I am a really long description of a thing that is going to an event that people are going to come to and it should be fun.",
-    members: [
-      {
-        type: "Speaker",
-        name: "Michelle Albert",
-      },
-      {
-        type: "Speaker",
-        name: "Albert",
-      },
-    ],
-    badges: [
-      {
-        color: "teal",
-        name: "Exhibit Hall Events",
-      },
-      {
-        color: "red",
-        name: "Exhibit Hall Events",
-      },
-    ],
-  },
-  {
     title: "Dropdown event",
     start: new Date(2019, 11, 25, 8),
     end: new Date(2019, 11, 25, 12),
